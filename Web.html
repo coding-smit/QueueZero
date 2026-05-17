@@ -9,27 +9,42 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-clock"></i>
-                <span>QueueZero</span>
-                <button onclick="openAdmin()" class="login-btn">Admin</button>
-            </div>
-            <div class="nav-links">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#feedback" class="nav-link" onclick="showFeedbackModal()">Feedback</a>
-                <button class="login-btn" onclick="showLogin()">Login</button>
-                <button class="register-btn" onclick="showRegister()">Register</button>
-                <button id="themeToggle" class="theme-toggle">
-    <span class="toggle-circle"></span>
-</button>
-            </div>
-        </div>
-    </nav>
-
+   
+  <nav class="navbar">
+    <div class="nav-container">
+ 
+      <div class="logo">
+        <i class="fas fa-clock"></i>
+        <span>QueueZero</span>
+        <button onclick="openAdmin()" class="login-btn">Admin</button>
+      </div>
+ 
+      <!-- Backdrop overlay (mobile) -->
+      <div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+ 
+      <!-- Nav links -->
+      <div class="nav-links" id="navLinks">
+        <a href="#home"     class="nav-link active">Home</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#about"    class="nav-link">About</a>
+        <a href="#feedback" class="nav-link" onclick="showFeedbackModal()">Feedback</a>
+        <button class="login-btn"    onclick="showLogin()">Login</button>
+        <button class="register-btn" onclick="showRegister()">Register</button>
+        <button id="themeToggle" class="theme-toggle">
+          <span class="toggle-circle"></span>
+        </button>
+      </div>
+ 
+      <!-- Hamburger button -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+ 
+    </div>
+  </nav>
+ 
     <!-- Hero Section - FIXED IMAGE -->
     <section id="home" class="hero">
         <div class="hero-content">
@@ -38,7 +53,7 @@
             <button class="cta-btn" onclick="scrollToServices()">Get Your Token Now</button>
         </div>
         <div class="hero-image">
-            <img src="Home.png" alt="Queue Management" loading="lazy">
+            <img src="assets/Home.png" alt="Queue Management" loading="lazy">
         </div>
     </section>
 
@@ -48,62 +63,62 @@
             <h2>Select Your Service</h2>
             <div class="services-grid">
                 <div class="service-card active" data-service="hospital">
-                    <img src="ABC hospital.png" alt="Hospital" loading="lazy">
+                    <img src="assets/ABC hospital.png" alt="Hospital" loading="lazy">
                     <h3><i class="fas fa-hospital"></i> Hospital</h3>
                     <p>Book doctor appointments without waiting</p>
                 </div>
                 <div class="service-card" data-service="saloon">
-                    <img src="Style Saloon.png" alt="Saloon" loading="lazy">
+                    <img src="assets/Style Saloon.png" alt="Saloon" loading="lazy">
                     <h3><i class="fas fa-scissors"></i> Saloon</h3>
                     <p>Get haircut slot instantly</p>
                 </div>
                 <div class="service-card" data-service="bank">
-                    <img src="Federal Bank.png" alt="Bank" loading="lazy">
+                    <img src="assets/Federal Bank.png" alt="Bank" loading="lazy">
                     <h3><i class="fas fa-bank"></i> Bank</h3>
                     <p>Fast banking without long queues</p>
                 </div>
             <div class="service-card" data-service="govt">
-                <img src="Government Office.png" alt="Government Office" loading="lazy">
+                <img src="assets/Government Office.png" alt="Government Office" loading="lazy">
                 <h3><i class="fas fa-building"></i> Govt Office</h3>
                 <p>Ration card, certificates</p>
             </div>
             <div class="service-card" data-service="passport">
-                <img src="Passport Office.png" alt="Passport Office" loading="lazy">
+                <img src="assets/Passport Office.png" alt="Passport Office" loading="lazy">
                 <h3><i class="fas fa-passport"></i> Passport Office</h3>
                 <p>Passport applications</p>
             </div>
             <div class="service-card" data-service="rto">
-                <img src="RTO.png" alt="RTO" loading="lazy">
+                <img src="assets/RTO.png" alt="RTO" loading="lazy">
                 <h3><i class="fas fa-car"></i> RTO/DMV</h3>
                 <p>License & vehicle registration</p>
             </div>
             <div class="service-card" data-service="restaurant">
-                <img src="Food Palace.png" alt="Restaurant" loading="lazy">
+                <img src="assets/Food Palace.png" alt="Restaurant" loading="lazy">
                 <h3><i class="fas fa-utensils"></i> Restaurant</h3>
                 <p>Table reservations</p>
             </div>
             <div class="service-card" data-service="laundry">
-                <img src="Laundary.png" alt="Laundry" loading="lazy">
+                <img src="assets/Laundary.png" alt="Laundry" loading="lazy">
                 <h3><i class="fas fa-tshirt"></i> Laundry</h3>
                 <p>Clothes pickup slots</p>
             </div>
             <div class="service-card" data-service="pharmacy">
-                <img src="Pharmacy.png" alt="Pharmacy" loading="lazy">
+                <img src="assets/Pharmacy.png" alt="Pharmacy" loading="lazy">
                 <h3><i class="fas fa-pills"></i> Pharmacy</h3>
                 <p>Medicine collection</p>
             </div>
             <div class="service-card" data-service="gym">
-                <img src="GYM.png" alt="Gym" loading="lazy">
+                <img src="assets/GYM.png" alt="Gym" loading="lazy">
                 <h3><i class="fas fa-dumbbell"></i> Gym</h3>
                 <p>Workout sessions</p>
             </div>
             <div class="service-card" data-service="postoffice">
-                <img src="Post Office.png" alt="Post Office" loading="lazy">
+                <img src="assets/Post Office.png" alt="Post Office" loading="lazy">
                 <h3><i class="fas fa-envelope"></i> Post Office</h3>
                 <p>Speed post & mail services</p>
             </div>
             <div class="service-card" data-service="electricity">
-                <img src="Electricity.png" alt="Electricity Office" loading="lazy">
+                <img src="assets/Electricity.png" alt="Electricity Office" loading="lazy">
                 <h3><i class="fas fa-bolt"></i> Electricity</h3>
                 <p>Bill payment & complaints</p>
             </div>
@@ -199,27 +214,27 @@
                 <h3>Our Trusted Partners</h3>
                 <div class="partners">
                     <div class="partner">
-                        <img src="ABC hospital.png" alt="ABC Hospital">
+                        <img src="assets/ABC hospital.png" alt="ABC Hospital">
                         <span>ABC Hospital</span>
                     </div>
                     <div class="partner">
-                        <img src="Style Saloon.png" alt="StyleSaloon">
+                        <img src="assets/Style Saloon.png" alt="StyleSaloon">
                         <span>StyleSaloon</span>
                     </div>
                     <div class="partner">
-                        <img src="Federal Bank.png" alt="Federal Bank">
+                        <img src="assets/Federal Bank.png" alt="Federal Bank">
                         <span>Federal Bank</span>
                     </div>
     <div class="partner">
-        <img src="Ration Office.png" alt="Ration Office">
+        <img src="assets/Ration Office.png" alt="Ration Office">
         <span>Ration Office</span>
     </div>
     <div class="partner">
-        <img src="Passport Sewa.png" alt="Passport Seva">
+        <img src="assets/Passport Sewa.png" alt="Passport Seva">
         <span>Passport Seva</span>
     </div>
     <div class="partner">
-        <img src="Food Palace.png" alt="Food Palace">
+        <img src="assets/Food Palace.png" alt="Food Palace">
         <span>Food Palace</span>
     </div>
 </div>

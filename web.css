@@ -17,69 +17,196 @@ body {
 }
 
 /* Navigation */
-.navbar {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.nav-container {
-    max-width: none;
-    margin: 0 ;
-    padding: 0 20px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.logo {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo i { font-size: 2rem; }
-
-.nav-links {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.nav-link {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-link:hover, .nav-link.active { color: #ffd700; }
-
-.login-btn, .register-btn {
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-left: 1rem;
-    font-size: 0.9rem;
-}
-
-.login-btn:hover, .register-btn:hover {
-    background: white;
-    color: #667eea;
-}
-
+  /* ─────────────────────────────────────
+       BASE NAVBAR
+    ───────────────────────────────────── */
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+ 
+    .nav-container {
+      max-width: none;
+      margin: 0;
+      padding: 0 20px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+ 
+    .logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+ 
+    .logo i { font-size: 2rem; }
+ 
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+ 
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+ 
+    .nav-link:hover, .nav-link.active { color: #ffd700; }
+ 
+    .login-btn, .register-btn {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-left: 1rem;
+      font-size: 0.9rem;
+    }
+ 
+    .login-btn:hover, .register-btn:hover {
+      background: white;
+      color: #667eea;
+    }
+ 
+    /* Theme Toggle */
+    .theme-toggle {
+      width: 44px;
+      height: 24px;
+      background: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      padding: 0;
+      transition: background 0.3s;
+    }
+ 
+    .toggle-circle {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+ 
+    /* ─────────────────────────────────────
+       HAMBURGER BUTTON
+    ───────────────────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 26px;
+      height: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: auto;
+      z-index: 1100;
+    }
+ 
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background: white;
+      border-radius: 3px;
+      transition: transform 0.35s ease, opacity 0.25s ease;
+      transform-origin: center;
+    }
+ 
+    /* Animate to X when open */
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(8.75px) rotate(45deg);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-8.75px) rotate(-45deg);
+    }
+ 
+    /* ─────────────────────────────────────
+       MOBILE STYLES
+    ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+ 
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 270px;
+        height: 100vh;
+        background: linear-gradient(160deg, #667eea 0%, #764ba2 100%);
+        box-shadow: -4px 0 24px rgba(0,0,0,0.25);
+        padding: 80px 28px 32px;
+        transform: translateX(100%);
+        transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1050;
+        overflow-y: auto;
+        box-sizing: border-box;
+      }
+ 
+      .nav-links.open {
+        transform: translateX(0);
+      }
+ 
+      .nav-links .nav-link {
+        padding: 14px 0;
+        font-size: 1.05rem;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+      }
+ 
+      .nav-links .login-btn,
+      .nav-links .register-btn {
+        margin: 10px 0 0 0;
+        width: 100%;
+        text-align: center;
+        padding: 0.65rem 1rem;
+      }
+ 
+      .nav-links .theme-toggle {
+        margin-top: 16px;
+      }
+ 
+      /* Backdrop overlay */
+      .nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 1040;
+        backdrop-filter: blur(2px);
+      }
+      .nav-overlay.open { display: block; }
+    }
+  
+ 
 /* Hero Section - FIXED */
 .hero {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);

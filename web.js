@@ -31,19 +31,31 @@ const serviceNames = {
 };
 
 // Navigation Smooth Scroll
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
+ function toggleMenu() {
+      document.getElementById('hamburger').classList.toggle('open');
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('navOverlay').classList.toggle('open');
+    }
+ 
+    function closeMenu() {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('navOverlay').classList.remove('open');
+    }
+ 
+    // Close menu when any nav link is clicked
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
     });
-});
+ 
+    // ── Your existing function stubs (replace with real logic) ──
+    function openAdmin()         { alert('Admin panel'); }
+    function showLogin()         { alert('Login'); }
+    function showRegister()      { alert('Register'); }
+    function showFeedbackModal() { alert('Feedback'); }
+  
 
+ 
 // Service Selection - FIXED
 serviceCards.forEach(card => {
     card.addEventListener('click', () => {
