@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueZero - No More Waiting Lines</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+   
+  <nav class="navbar">
+    <div class="nav-container">
+ 
+      <div class="logo">
+        <i class="fas fa-clock"></i>
+        <span>QueueZero</span>
+        <button onclick="openAdmin()" class="login-btn">Admin</button>
+      </div>
+ 
+      <!-- Backdrop overlay (mobile) -->
+      <div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+ 
+      <!-- Nav links -->
+      <div class="nav-links" id="navLinks">
+        <a href="#home"     class="nav-link active">Home</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#about"    class="nav-link">About</a>
+        <a href="#feedback" class="nav-link" onclick="showFeedbackModal()">Feedback</a>
+        <button class="login-btn"    onclick="showLogin()">Login</button>
+        <button class="register-btn" onclick="showRegister()">Register</button>
+        <button id="themeToggle" class="theme-toggle">
+          <span class="toggle-circle"></span>
+        </button>
+      </div>
+ 
+      <!-- Hamburger button -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+ 
+    </div>
+  </nav>
+ 
+    <!-- Hero Section - FIXED IMAGE -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>No More Physical Queues!</h1>
+            <p>Book your slot instantly and reach exactly on time. Save your precious time with QueueZero.</p>
+            <button class="cta-btn" onclick="scrollToServices()">Get Your Token Now</button>
+        </div>
+        <div class="hero-image">
+            <img src="assets/Home.png" alt="Queue Management" loading="lazy">
+        </div>
+    </section>
+
+    <!-- Services Section - FIXED IMAGES -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Select Your Service</h2>
+            <div class="services-grid">
+                <div class="service-card active" data-service="hospital">
+                    <img src="assets/ABC hospital.png" alt="Hospital" loading="lazy">
+                    <h3><i class="fas fa-hospital"></i> Hospital</h3>
+                    <p>Book doctor appointments without waiting</p>
+                </div>
+                <div class="service-card" data-service="saloon">
+                    <img src="assets/Style Saloon.png" alt="Saloon" loading="lazy">
+                    <h3><i class="fas fa-scissors"></i> Saloon</h3>
+                    <p>Get haircut slot instantly</p>
+                </div>
+                <div class="service-card" data-service="bank">
+                    <img src="assets/Federal Bank.png" alt="Bank" loading="lazy">
+                    <h3><i class="fas fa-bank"></i> Bank</h3>
+                    <p>Fast banking without long queues</p>
+                </div>
+            <div class="service-card" data-service="govt">
+                <img src="assets/Government Office.png" alt="Government Office" loading="lazy">
+                <h3><i class="fas fa-building"></i> Govt Office</h3>
+                <p>Ration card, certificates</p>
+            </div>
+            <div class="service-card" data-service="passport">
+                <img src="assets/Passport Office.png" alt="Passport Office" loading="lazy">
+                <h3><i class="fas fa-passport"></i> Passport Office</h3>
+                <p>Passport applications</p>
+            </div>
+            <div class="service-card" data-service="rto">
+                <img src="assets/RTO.png" alt="RTO" loading="lazy">
+                <h3><i class="fas fa-car"></i> RTO/DMV</h3>
+                <p>License & vehicle registration</p>
+            </div>
+            <div class="service-card" data-service="restaurant">
+                <img src="assets/Food Palace.png" alt="Restaurant" loading="lazy">
+                <h3><i class="fas fa-utensils"></i> Restaurant</h3>
+                <p>Table reservations</p>
+            </div>
+            <div class="service-card" data-service="laundry">
+                <img src="assets/Laundary.png" alt="Laundry" loading="lazy">
+                <h3><i class="fas fa-tshirt"></i> Laundry</h3>
+                <p>Clothes pickup slots</p>
+            </div>
+            <div class="service-card" data-service="pharmacy">
+                <img src="assets/Pharmacy.png" alt="Pharmacy" loading="lazy">
+                <h3><i class="fas fa-pills"></i> Pharmacy</h3>
+                <p>Medicine collection</p>
+            </div>
+            <div class="service-card" data-service="gym">
+                <img src="assets/GYM.png" alt="Gym" loading="lazy">
+                <h3><i class="fas fa-dumbbell"></i> Gym</h3>
+                <p>Workout sessions</p>
+            </div>
+            <div class="service-card" data-service="postoffice">
+                <img src="assets/Post Office.png" alt="Post Office" loading="lazy">
+                <h3><i class="fas fa-envelope"></i> Post Office</h3>
+                <p>Speed post & mail services</p>
+            </div>
+            <div class="service-card" data-service="electricity">
+                <img src="assets/Electricity.png" alt="Electricity Office" loading="lazy">
+                <h3><i class="fas fa-bolt"></i> Electricity</h3>
+                <p>Bill payment & complaints</p>
+            </div>
+            </div>
+        </div>
+</section>
+            
+            <!-- Token Generation Form -->
+            <div id="tokenForm" class="token-form hidden">
+            <h3>Generate Your Token - <span id="selectedServiceName">Service</span></h3>
+            <form id="tokenGenerator">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="userName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="userPhone" placeholder="10-digit phone number" required>
+                </div>
+                        <div class="form-group">
+            <label><i class="fas fa-calendar-alt"></i> Select Date</label>
+            <input type="date" id="bookingDate" placeholder="DD/MM/YYYY" required>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-clock"></i> Preferred Time Slot</label>
+                    <select id="timeSlot" required>
+                        <option value="">Select Time Slot</option>
+                        <option value="09:00-10:00">09:00 AM - 10:00 AM</option>
+                        <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
+                        <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
+                        <option value="14:00-15:00">02:00 PM - 03:00 PM</option>
+                        <option value="15:00-16:00">03:00 PM - 04:00 PM</option>
+                        <option value="16:00-17:00">04:00 PM - 05:00 PM</option>
+                    </select>
+                </div>
+                <button type="submit" class="generate-btn">
+                    <i class="fas fa-ticket-alt"></i> Generate Token
+                </button>
+            </form>
+            <div id="tokenResult" class="token-result hidden">
+                <!-- Token result content same as before -->
+                <div class="token-display">
+                    <h3>Your Token Number:</h3>
+                    <div class="token-number" id="tokenNumber">Q0000</div>
+                </div>
+                <div class="token-details">
+                    <p><i class="fas fa-clock"></i> Reach between: <span id="tokenTime"></span></p>
+                    <p><i class="fas fa-calendar"></i> Date: <span id="tokenDate"></span></p>
+                    
+                    <p><i class="fas fa-users"></i> Your position: <span id="queuePosition"></span></p>
+
+                </div>
+                <div class="token-actions">
+                    <button onclick="printToken()" class="print-btn">
+                        <i class="fas fa-print"></i> Print Token
+                    </button>
+                    <button onclick="showFeedbackModal()" class="feedback-btn">
+                        <i class="fas fa-star"></i> Give Feedback
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- About Section - FIXED LAYOUT -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About QueueZero</h2>
+            <p class="about-text">Revolutionizing queue management across India. Our digital token system eliminates physical queues and saves valuable customer time.</p>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Instant Tokens</h4>
+                    <p>Get your token number within seconds</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <h4>Time Slots</h4>
+                    <p>Book exact time slots, no waiting</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Mobile Friendly</h4>
+                    <p>Works perfectly on all devices</p>
+                </div>
+            </div>
+
+            <!-- Partners Section - FIXED -->
+            <div class="partners-section">
+                <h3>Our Trusted Partners</h3>
+                <div class="partners">
+                    <div class="partner">
+                        <img src="assets/ABC hospital.png" alt="ABC Hospital">
+                        <span>ABC Hospital</span>
+                    </div>
+                    <div class="partner">
+                        <img src="assets/Style Saloon.png" alt="StyleSaloon">
+                        <span>StyleSaloon</span>
+                    </div>
+                    <div class="partner">
+                        <img src="assets/Federal Bank.png" alt="Federal Bank">
+                        <span>Federal Bank</span>
+                    </div>
+    <div class="partner">
+        <img src="assets/Ration Office.png" alt="Ration Office">
+        <span>Ration Office</span>
+    </div>
+    <div class="partner">
+        <img src="assets/Passport Sewa.png" alt="Passport Seva">
+        <span>Passport Seva</span>
+    </div>
+    <div class="partner">
+        <img src="assets/Food Palace.png" alt="Food Palace">
+        <span>Food Palace</span>
+    </div>
+</div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeLogin()">&times;</span>
+            <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                    <span id="loginEmailError" class="error"></span>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    <div id="passwordStrength" class="password-strength"></div>
+                    <span id="loginPasswordError" class="error"></span>
+                </div>
+                <button type="submit" class="modal-btn">Login Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeRegister()">&times;</span>
+            <h3><i class="fas fa-user-plus"></i> Register</h3>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="regName" placeholder="Enter your full name" required>
+                    <span id="regNameError" class="error"></span>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="regEmail" placeholder="your@email.com" required>
+                    <span id="regEmailError" class="error"></span>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Phone</label>
+                    <input type="tel" id="regPhone" placeholder="10-digit phone number" required>
+                    <span id="regPhoneError" class="error"></span>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="regPassword" placeholder="Minimum 6 characters" required>
+                    <div id="regPasswordStrength" class="password-strength"></div>
+                    <span id="regPasswordError" class="error"></span>
+                </div>
+                <button type="submit" class="modal-btn">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback Modal - VISIBLE & PROMINENT -->
+    <div id="feedbackModal" class="modal hidden">
+        <div class="modal-content feedback-modal">
+            <span class="close" onclick="closeFeedback()">&times;</span>
+            <h3><i class="fas fa-star"></i> Rate Your Experience</h3>
+            <form id="feedbackForm">
+                <div class="stars-container">
+                    <div class="stars">
+                        <i class="fas fa-star" data-rating="1"></i>
+                        <i class="fas fa-star" data-rating="2"></i>
+                        <i class="fas fa-star" data-rating="3"></i>
+                        <i class="fas fa-star" data-rating="4"></i>
+                        <i class="fas fa-star" data-rating="5"></i>
+                    </div>
+                    <div id="selectedRating" class="rating-text">Click a star to rate</div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-comment"></i> Your Feedback</label>
+                    <textarea id="feedbackComment" rows="4" placeholder="Tell us about your experience..."></textarea>
+                </div>
+                <button type="submit" class="modal-btn feedback-submit">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="adminPanel" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="closeAdmin()">&times;</span>
+        <h3>Admin Dashboard</h3>
+        <div id="adminData"></div>
+    </div>
+</div>
+
+<!-- ✅ FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <!-- LEFT -->
+        <div class="footer-left">
+            <h3>QueueZero</h3>
+            <p>© 2026 QueueZero</p>
+            <p>All rights reserved.</p>
+        </div>
+
+        <!-- CENTER -->
+        <div class="footer-center">
+            <p>www.queuezero.com</p>
+            <div class="social-icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="footer-right">
+            <p><i class="fas fa-envelope"></i> support@queuezero.com</p>
+            <p><i class="fas fa-phone"></i> +91 9876543210</p>
+        </div>
+
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
