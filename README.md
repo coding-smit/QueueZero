@@ -31,6 +31,9 @@ The system helps users avoid physical waiting lines by generating digital tokens
 - Government Office
 - Laundry
 - Electricity Office
+- 
+## Live Demo
+https://coding-smit.github.io/QueueZero/
 
 ## Developed By
 Shivam Pal
